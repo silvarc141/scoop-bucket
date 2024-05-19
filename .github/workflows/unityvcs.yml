@@ -24,13 +24,14 @@ jobs:
           ls
           mkdir -p installed
           $path = pwd
-          .\installer.exe --mode unattended --prefix "$path\installed"
+          Write-Host .\installer.exe --mode unattended --prefix "$path\installed"
+          ls installed
 
       - name: Create artifacts
         run: |
           mkdir -p artifacts
-          cp installed\client artifacts\
-          cp installed\theme artifacts\
+          cp .\installed\client artifacts\
+          cp .\installed\theme artifacts\
 
       - name: Upload
         uses: actions/upload-artifact@v4

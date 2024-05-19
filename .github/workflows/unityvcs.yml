@@ -17,21 +17,26 @@ jobs:
         run: |
           $version = "11.0.16.8622"
           $link = "https://www.plasticscm.com/download/downloadinstaller/$version/plasticscm/windows/full?flags=None"
-          (New-Object System.Net.WebClient).DownloadFile($link, ".\installer.exe")
+          (New-Object Net.WebClient).DownloadFile($link, ".\installer.exe")
 
       - name: Run installer
         run: |
-          ls
           mkdir -p installed
-          $path = pwd
-          Start-Process .\installer.exe -ArgumentList "--mode unattended --prefix $path\installed" -Wait
-          ls installed
+          .\installer.exe --mode unattended --unattendedmodeui none --prefix "$(pwd)\installed" --debuglevel 4 --debugtrace "(pwd)\log.txt"
+
+          $required = @('client','server','theme','install.properties','uninstall.exe')
+
+          while(($required.Where-Object{$_ -notin Get-ChildItem}).Count -eq 0)
+          {
+            Start-Sleep -Seconds 1
+          }
 
       - name: Create artifacts
         run: |
           mkdir -p artifacts
           cp .\installed\client artifacts\
           cp .\installed\theme artifacts\
+          cp .\installed\install.properties artifacts\
 
       - name: Upload
         uses: actions/upload-artifact@v4

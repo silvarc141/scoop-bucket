@@ -36,21 +36,18 @@ jobs:
             }
 
             Write-Output "Items left - $itemsLeft"
-            Get-ChildItem installed
             Start-Sleep -Seconds 1
           }
-
-          ls .\installed\
 
       - name: Create artifacts
         run: |
           mkdir -p artifacts
           cp -r .\installed\client artifacts\
-          cp -r .\installed\server artifacts\
+          #cp -r .\installed\server artifacts\
           cp -r .\installed\theme artifacts\
           cp -r .\installed\install.properties artifacts\
 
-      - name: Upload
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: unityvcs-artifacts

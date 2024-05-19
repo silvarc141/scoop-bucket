@@ -2,7 +2,8 @@ name: Repack Unity VCS files from the installer to an archive
 
 on:
   push:
-    - master
+    branches:
+      - master
 
 jobs:
   check:

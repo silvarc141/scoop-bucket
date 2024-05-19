@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@main
       - id: check
         name: Check if manifest was modified
-        run: $(git diff --name-only HEAD^1 HEAD -- bucket/unityvcs.json) -eq $null
+        run: |
+          git reset --hard master
+          $(git diff --name-only HEAD^1 HEAD -- bucket/unityvcs.json) -eq $null
 
   repack:
     needs: check

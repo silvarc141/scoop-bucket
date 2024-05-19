@@ -17,12 +17,13 @@ jobs:
         run: |
           $version = "11.0.16.8622"
           $link = "https://www.plasticscm.com/download/downloadinstaller/$version/plasticscm/windows/full?flags=None"
-          (New-Object Net.WebClient).DownloadFile($link, ".\installer.exe")
+          (New-Object System.Net.WebClient).DownloadFile($link, ".\installer.exe")
 
       - name: Run installer
         run: |
+          ls
           mkdir -p installed
-          installer.exe --mode unattended --prefix "installed"
+          .\installer.exe --mode unattended --prefix "installed"
 
       - name: Create artifacts
         run: |

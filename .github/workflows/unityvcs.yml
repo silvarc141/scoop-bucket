@@ -24,7 +24,7 @@ jobs:
           mkdir -p installed
           .\installer.exe --mode unattended --unattendedmodeui none --prefix "$(pwd)\installed" --debuglevel 4 --debugtrace "(pwd)\log.txt"
 
-          $required = @('client','server','theme','install.properties','uninstall.exe')
+          $required = @('client','server','theme','install.properties','uninstall.dat')
 
           while($True)
           {
@@ -36,6 +36,7 @@ jobs:
             }
 
             Write-Output "Items left - $itemsLeft"
+            ls
             Start-Sleep -Seconds 1
           }
 

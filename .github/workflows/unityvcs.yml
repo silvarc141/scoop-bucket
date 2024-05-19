@@ -26,13 +26,12 @@ jobs:
 
           $required = @('client','server','theme','install.properties','uninstall.exe')
 
-          while(($required.Where{$_ -notin (Get-ChildItem)}).Count -eq 0)
+          while(($required.Where{$_ -notin (Get-ChildItem)}).Count -ne 0)
           {
             Start-Sleep -Seconds 1
           }
 
-          cd installed
-          ls
+          ls .\installed\
 
       - name: Create artifacts
         run: |

@@ -1,0 +1,30 @@
+name: Unpack Unity VCS installer
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-exe:
+    runs-on: windows-latest
+
+    steps:
+      - name: Download installer
+        run: |
+          write-host "test"
+
+      - name: Run installer
+        run: |
+          write-host "Running installer"
+
+      - name: Artifacts
+        run: |
+          mkdir -p artifacts
+        uses: actions/upload-artifacts@v3
+        with:
+          name: unityvcs-artifacts
+          path: artifacts/

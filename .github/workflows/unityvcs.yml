@@ -23,7 +23,8 @@ jobs:
         run: |
           ls
           mkdir -p installed
-          .\installer.exe --mode unattended --prefix "installed"
+          $path = pwd
+          .\installer.exe --mode unattended --prefix "$path\installed"
 
       - name: Create artifacts
         run: |

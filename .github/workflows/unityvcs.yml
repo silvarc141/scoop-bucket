@@ -15,16 +15,20 @@ jobs:
     steps:
       - name: Download installer
         run: |
-          write-host "test"
+          $version = "11.0.16.8622"
+          $link = "https://www.plasticscm.com/download/downloadinstaller/$version/plasticscm/windows/full?flags=None"
+          (New-Object Net.WebClient).DownloadFile($link, ".\installer.exe")
 
       - name: Run installer
         run: |
-          write-host "Running installer"
+          mkdir -p installed
+          installer.exe --mode unattended --prefix "installed"
 
       - name: Create artifacts
         run: |
           mkdir -p artifacts
-          touch artifacts/test.txt
+          cp installed\client artifacts\
+          cp installed\theme artifacts\
 
       - name: Upload
         uses: actions/upload-artifact@v4

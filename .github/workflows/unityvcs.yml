@@ -21,9 +21,11 @@ jobs:
         run: |
           write-host "Running installer"
 
-      - name: Artifacts
+      - name: Create artifacts
         run: |
           mkdir -p artifacts
+
+      - name: Upload
         uses: actions/upload-artifacts@v3
         with:
           name: unityvcs-artifacts

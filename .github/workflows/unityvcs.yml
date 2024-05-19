@@ -11,7 +11,7 @@ jobs:
     outputs:
       status: ${{ steps.check.conclusion }}
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v2
       - id: check
         name: Check if manifest was modified
         run: |

@@ -28,12 +28,14 @@ jobs:
 
           while($True)
           {
-            $items = Get-ChildItem installed
-            if(($required.Where{$_ -notin $items}).Count -eq 0)
+            $items = Get-ChildItem installed | Foreach-Object {$_.name}
+            $itemsLeft = ($required.Where{$_ -notin $items})
+            if($itemsLeft.Count -eq 0)
             {
               break;
             }
 
+            Write-Output "Items left - $itemsLeft"
             Start-Sleep -Seconds 1
           }
 

@@ -31,7 +31,8 @@ jobs:
             Start-Sleep -Seconds 1
           }
 
-          ls installed
+          cd installed
+          ls
 
       - name: Create artifacts
         run: |

@@ -11,12 +11,15 @@ jobs:
     outputs:
       status: ${{ steps.check.conclusion }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 5
       - id: check
         name: Check if manifest was modified
         run: |
           git reset --hard master
-          $(git diff --name-only HEAD^1 HEAD -- bucket/unityvcs.json) -eq $null
+          $(git diff --name-only HEAD~1 HEAD -- bucket/unityvcs.json) -eq $null
 
   repack:
     needs: check

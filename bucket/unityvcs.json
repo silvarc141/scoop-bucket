@@ -7,7 +7,7 @@
     },
     "checkver": {
         "url": "https://www.plasticscm.com/download",
-        "regex": "value=\"(.*)\">.*\(latest\)"
+        "regex": "value=\"(.*)\">.*\\(latest\\)"
     },
     "autoupdate": {
         "url": "https://www.plasticscm.com/download/downloadinstaller/$version/plasticscm/windows/full?flags=None"

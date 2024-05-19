@@ -15,6 +15,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SKIP_UPDATED: 1
-      - name: Trigger UnityVCS release
-        run: |
-          ls

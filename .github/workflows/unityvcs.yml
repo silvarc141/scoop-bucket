@@ -24,7 +24,7 @@ jobs:
           ls
           mkdir -p installed
           $path = pwd
-          Write-Host .\installer.exe --mode unattended --prefix "$path\installed"
+          Start-Process .\installer.exe -ArgumentList "--mode unattended --prefix $path\installed" -Wait
           ls installed
 
       - name: Create artifacts

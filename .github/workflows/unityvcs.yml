@@ -18,8 +18,14 @@ jobs:
       - id: check
         name: Check if manifest was modified
         run: |
-          git reset --hard master
-          $(git diff --name-only HEAD~1 HEAD -- bucket/unityvcs.json) -eq $null
+          if($(git diff --name-only HEAD~1 HEAD -- bucket/unityvcs.json) -eq $null)
+          {
+            exit 0
+          }
+          else
+          {
+            exit 1
+          }
 
   repack:
     needs: check

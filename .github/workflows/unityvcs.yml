@@ -2,11 +2,22 @@ name: Repack Unity VCS files from the installer to an archive
 
 on:
   push:
-    tags:
-      - 'unityvcs_v*'
+    - master
 
 jobs:
-  run-exe:
+  check:
+    runs-on: windows-latest
+    outputs:
+      status: ${{ steps.check.conclusion }}
+    steps:
+      - uses: actions/checkout@main
+      - id: check
+        name: Check if manifest was modified
+        run: $(git diff --name-only HEAD~1 HEAD -- bucket/unityvcs.yml) -eq $null
+
+  repack:
+    needs: check
+    if: needs.check.outputs.status == 'success'
     runs-on: windows-latest
 
     steps:

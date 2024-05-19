@@ -39,14 +39,15 @@ jobs:
             Start-Sleep -Seconds 1
           }
 
+          Write-Host "Installation completed"
+
       - name: Create artifacts
         run: |
           mkdir -p artifacts
-          #cp -r .\installed\server artifacts\
           cp -r .\installed\client artifacts\
           cp -r .\installed\theme artifacts\
           cp -r .\installed\install.properties artifacts\
-          Compress-Archive -Path.\installed\ -DestinationPath release-files.zip
+          Compress-Archive -Path .\artifacts\ -DestinationPath release-files.zip
 
       - name: Create release
         id: create_release

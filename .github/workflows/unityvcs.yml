@@ -3,10 +3,10 @@ name: Unpack Unity VCS installer
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   run-exe:
